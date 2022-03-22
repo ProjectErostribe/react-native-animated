@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Animated } from 'react-native';
-import { useEffec, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default () => {
   const translation = useRef(
@@ -9,17 +9,18 @@ export default () => {
 
     useEffect(() => { 
       Animated.timing(translation, { 
-        toValue: 50, useNativeDriver: true,
-      }).start(); }, []); 
+        toValue: 50, 
+        useNativeDriver: true,
+      }).start(); 
+    }, []); 
 
 
   return (
-
     <Animated.View
       style={{
         width: 100,
         height: 100,
-        backgroundColor: 'red',
+        backgroundColor: '#B76E79',
         transform: [{translateX: translation}]
       }}
       />
