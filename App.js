@@ -1,14 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Animated } from 'react-native';
+import { useEffec, useRef } from 'react';
 
-export default function App() {
+export default () => {
+  const translation = useRef(
+    new Animated.Value(0)
+    ).current;
+
+    useEffec(() => {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          translation.setValue(i);
+        }, 25 * i);
+      }
+    }, []);
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <Animated.View
+      style={{
+        width: 100,
+        height: 100,
+        backgroundColor: 'red',
+        transform: [{translateX: translation}],
+      }}
 
 const styles = StyleSheet.create({
   container: {
