@@ -7,12 +7,11 @@ export default () => {
     new Animated.Value(0)
     ).current;
 
-    useEffec(() => {
-      for (let i = 0; i < 50; i++) {
-        setTimeout(() => {
-          translation.setValue(i);
-        }, 25 * i);
-      }
+    useEffect(() => {
+      Animated.timing(translation, {
+        toValue: 50,
+        useNativeDriver: true,
+      }).start();
     }, []);
 
 
