@@ -11,6 +11,7 @@ export default () => {
       Animated.spring(translation, { 
         toValue: 100,
         delay: 1000, 
+        friction: 3,
         easing: Easing.bounce,
         useNativeDriver: true,
       }).start(); 
