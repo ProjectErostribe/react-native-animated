@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Animated } from 'react-native';
+import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
 import { useEffect, useRef } from 'react';
 
 export default () => {
@@ -8,14 +8,17 @@ export default () => {
     ).current;
 
     useEffect(() => { 
-      Animated.timing(translation, { 
-        toValue: 50, 
+      Animated.spring(translation, { 
+        toValue: 100,
+        delay: 1000, 
+        easing: Easing.bounce,
         useNativeDriver: true,
       }).start(); 
     }, []); 
 
 
   return (
+    <View style={styles.container}>
     <Animated.View
       style={{
         width: 100,
@@ -24,12 +27,15 @@ export default () => {
         transform: [{translateX: translation}]
       }}
       />
+    </View>
   )
     }
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    backgroundColor: "darkgray",
+    backgroundColor: "black",
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",    
+    alignItems: "center",
+  },
+});    
