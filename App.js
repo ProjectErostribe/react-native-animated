@@ -25,4 +25,11 @@ export default () => {
       }}
       />
   )
-    };
+    }
+
+const Styles = StyleSheet.create({
+  container: {
+    backgroundColor: "darkgray",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",    
