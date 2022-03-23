@@ -3,13 +3,26 @@ import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
 import { useEffect, useRef } from 'react';
 
 export default () => {
-  const translation = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+  const firstOpacity = useRef(
     new Animated.Value(0)
     ).current;
 
+    const secondOpacity = useRef(
+      new Animated.Value(0)
+      ).current;
+
+      const thirdOpacity = useRef(
+        new Animated.Value(0)
+        ).current;  
+
     useEffect(() => { 
       Animated.sequence([
-        Animated.spring(translation.x, {
+        Animated.parallel([
+          Animated.spring(translation.x, {
+            toValue: 100,
+            useNativeDriver: true,
+        ]),
+        Animated.spring(translation.y, {
           toValue: -100,
           useNativeDriver: true,
         }),
