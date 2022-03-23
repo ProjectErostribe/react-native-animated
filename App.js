@@ -16,19 +16,22 @@ export default () => {
         ).current;  
 
     useEffect(() => { 
-      Animated.sequence([
-        Animated.parallel([
-          Animated.spring(translation.x, {
-            toValue: 100,
-            useNativeDriver: true,
-        ]),
-        Animated.spring(translation.y, {
-          toValue: -100,
+      Animated.stagger(100, [
+        Animated.timing(firstOpacity, {
+          toValue: 1,
+          useNativeDriver: true,
+        }),
+        Animated.timing(secondOpacity, {
+          toValue: 1,
+          useNativeDriver: true,
+        }),
+        Animated.timing(thirdOpacity, {
+          toValue: 1,
           useNativeDriver: true,
         }),
       ]).start();
-    });
-
+    });  
+     
 
   return (
     <View style={styles.container}>
