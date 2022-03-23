@@ -3,19 +3,18 @@ import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
 import { useEffect, useRef } from 'react';
 
 export default () => {
-  const translation = useRef(
+  const translation = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
     new Animated.Value(0)
     ).current;
 
     useEffect(() => { 
-      Animated.spring(translation, { 
-        toValue: 100,
-        delay: 1000, 
-        friction: 3,
-        easing: Easing.bounce,
-        useNativeDriver: true,
-      }).start(); 
-    }, []); 
+      Animated.sequence([
+        Animated.spring(translation.x, {
+          toValue: -100,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    });
 
 
   return (
@@ -25,7 +24,10 @@ export default () => {
         width: 100,
         height: 100,
         backgroundColor: '#B76E79',
-        transform: [{translateX: translation}]
+        transform: [
+          {translateX: translation.x},
+          {translateY: translation.y},
+        ],
       }}
       />
     </View>
