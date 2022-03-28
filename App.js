@@ -32,7 +32,10 @@ export default  App() => {
         opacity: translation.interpolate({
           inputRange: [0, 50,100],
           outputRange: [0, 1, 0],
-      })
+      }),
+      backgroundColor: translation.interpolate({
+        inputRange: [0, 100],
+        outputRange: ['#B76E79', '#FFCD00'],
       }}
       />
     </View>
