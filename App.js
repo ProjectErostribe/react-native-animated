@@ -3,7 +3,9 @@ import { ScrollView, View, Animated } from "react-native";
 
 export default function App() {
   const [headerShown, setHeaderShown] = useState(false);
-  cont translation = useRef(new Animated.Value(-100)).
+  const scrolling = useRef(new Animated.Value(0)).
+  current;
+  const translation = useRef(new Animated.Value(-100)).
   current;
 
   useEffect(() => {
@@ -29,15 +31,22 @@ export default function App() {
           }}
       />
 
-      <ScrollView
-        onScroll={(event) => {
-          const scrolling = event.nativeEvent.
-          contentOffset.y;
-
-          if (scrolling > 100) {
-            setHeaderShown(true);
-          } else {
-            setHeaderShown(false);
-          }
+      <Animated.ScrollView
+        onScroll={Animated.event([
+          { 
+            nativeEvent: { 
+              contentOffset: { 
+                y: scrolling, 
+              },
+             },
+             },
+             { useNativeDriver: true, }
+            ])}
+        scrollEventThrottle={16}
+        style={{ flex: 1 }}
+      >
+        <View style={{ flex: 1, height: 1000 }}/>
+    </Animated.ScrollView>
     </>
+  );
 }
