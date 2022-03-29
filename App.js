@@ -35,8 +35,7 @@ export default function App() {
               },
              },
              },
-             { useNativeDriver: true, }
-            ])}
+            ], { useNativeDriver: true, })}
         scrollEventThrottle={16}
         style={{ flex: 1 }}
       >
