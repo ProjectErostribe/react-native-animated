@@ -1,51 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Animated } from 'react-native';
-import { useEffect, useRef } from 'react';
+import React, { useState,  } from "react";
+import { ScrollView, View,  } from "react-native";
 
-export default  App() => {
-  const translation = useRef(new Animated.Value(0)).
-  current;
+export default function App() {
+  const [headerShown, setHeaderShown] = useState(false);
 
-    useEffect(() => { 
-        Animated.timing(translation, {
-          toValue: 100,
-          duration: 1000,
-          useNativeDriver: false,
-        }).start();
-    });  
-     
 
   return (
-    <View style={styles.container}>
-    <Animated.View
-      style={{
-        width: 100,
-        height: 100,
-        backgroundColor: '#B76E79',
-        transform: [
-          {translateX: translation},
-          { rotate: translationn.interpolate({
-            inputRange: [0, 100],
-            outputRange: ['0deg', '360deg']
-          }
-        ],
-        opacity: translation.interpolate({
-          inputRange: [0, 50,100],
-          outputRange: [0, 1, 0],
-      }),
-      backgroundColor: translation.interpolate({
-        inputRange: [0, 100],
-        outputRange: ['#B76E79', '#FFCD00'],
-      }}
+    <>
+      <View
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 80,
+          backgroundColor: black,
+          transform: [{ translateY: headerShown ? 0 :
+             -100 }],
+          }}
       />
-    </View>
-      
 
-    const styles = StyleSheet.create({
-      container: {
-      backgroundColor: "black",
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      },
-      }); 
+      <ScrollView
+        onScroll={(event) => {
+          const scrolling = event.nativeEvent.
+          contentOffset.y;
+
+          if (scrolling > 100) {
+            setHeaderShown(true);
+          } else {
+            setHeaderShown(false);
+          }
+    </>
+}
