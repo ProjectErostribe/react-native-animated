@@ -1,20 +1,16 @@
-import React, { useEffect, useState, useRef  } from "react";
+import React, { useEffect, useRef  } from "react";
 import { ScrollView, View, Animated } from "react-native";
 
 export default function App() {
   const [headerShown, setHeaderShown] = useState(false);
   const scrolling = useRef(new Animated.Value(0)).
   current;
-  const translation = useRef(new Animated.Value(-100)).
-  current;
+  const translation = scrolling.interpolate({
+    inputRange: [100, 100],
+    outputRange: [-100, 0],
+    extrapolate: "clamp"
+  });
 
-  useEffect(() => {
-    Animated.timing(translation, {
-      toValue: headerShown ? 0 : -100,
-      duration: 250,
-      useNativeDriver: true,
-      }).start();
-  }, [headerShown]);
 
   return (
     <>
