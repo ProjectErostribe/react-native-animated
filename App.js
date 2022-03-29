@@ -22,8 +22,7 @@ export default function App() {
           right: 0,
           height: 80,
           backgroundColor: grey,
-          transform: [{ translateY: headerShown ? 0 :
-             -100 }],
+          transform: [{ translateY: translation }],
           }}
       />
 
